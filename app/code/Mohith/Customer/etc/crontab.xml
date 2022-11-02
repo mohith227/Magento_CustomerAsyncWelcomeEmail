@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+        <group id="default">
+           <job instance="Mohith\Customer\Cron\AsyncCustomerEmail" method="execute" name="mohith_customer_async_welcome_email">
+                <config_path>crontab/default/jobs/mohith_customer_welcome_email/schedule/cron_expr</config_path>
+                </job>
+        </group>
+</config>

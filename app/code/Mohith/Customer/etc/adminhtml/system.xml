@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mohith" translate="label" sortOrder="10">
+            <label>Mohith</label>
+        </tab>
+        <section id="async_customer_email" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Customer AsyncEmail</label>
+            <tab>mohith</tab>
+            <resource>Mohith_Customer::mohith_Customer_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_manual_scheduler_for_customer_welcome_email" translate="label" type="select"
+                       sortOrder="1" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Enable Manual Scheduler For Customer Welcome Email</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip>To setup cron from regular interval in a day kindly make use of manual scheduler</tooltip>
+                </field>
+                <field id="manual_scheduler_for_customer_welcome_email" translate="label" type="text" sortOrder="2"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0">
+                    <label>Scheduler For Customer Welcome Email</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="enable_manual_scheduler_for_customer_welcome_email">1</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                    <comment>Enter the space between each Schedule Example For every Second * * * *</comment>
+                </field>
+                <field id="frequency" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Frequency</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="enable_manual_scheduler_for_customer_welcome_email">0</field>
+                    </depends>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Mohith\Customer\Model\Config\CronConfig</backend_model>
+                </field>
+                <field id="time" translate="label comment" sortOrder="4" type="time" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Start Time</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="enable_manual_scheduler_for_customer_welcome_email">0</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
